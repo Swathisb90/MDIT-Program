@@ -1,0 +1,25 @@
+* Lists allows duplicates i.e list can consists of the element multiple times whereas Sets do not allow duplicates where each element value is unique.
+* Lists maintain the order of elements as they are added, whereas Sets do not guarantee any particular order.
+* Set is implemented by - HashSet, linkedhastset, Treeset however List is implemented by ArrayList, Vector & Linkedlist
+* Set is extened by SortedSet
+* List allows you to iterate over its elements using an iterator or a for-each loop, while Set also allows iteration but does not guarantee the order of its elements during iteration.
+* List elements can be  accessed using their index position, using methods like get() and set(). Set does not allow index-based access because it does not maintain any specific order.
+* Example 
+//.    List<String> myList = new ArrayList<>();
+        Set<String> mySet = new HashSet<>();
+        List.add("Pencil");
+        List.add("Sharper");
+        Set.add("Pencil");
+        Set.add("Pencil");
+System.out.println("Element at index 1 in list: " + List.get(1));
+ System.out.println("Set elements using for-each loop:");
+for (String element : Set) {
+            System.out.println(element);
+        }
+----
+o/p
+Element at index 1 in list: Sharper
+Set elements using for-each loop:
+Pencil 
+
+// Out put prints only one element for set as it consits of duplicate also set cannot be accessed using the mentionedget
