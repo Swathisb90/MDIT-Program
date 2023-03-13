@@ -1,0 +1,26 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapIteration {
+
+    public static void main(String[] args) {
+        
+        // Create a HashMap with test data
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("apple", 1);
+        map.put("banana", 2);
+        map.put("cherry", 3);
+        map.put("date", 4);
+        map.put("elderberry", 5);
+        map.put("fig", 6);
+
+        
+        // Iterate over the map and display each element on the console
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            System.out.println(key + " : " + value);
+        }
+    }
+
+}
