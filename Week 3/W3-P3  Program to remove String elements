@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class RemoveElementsFromArrayListExample {
+
+    public static void main(String[] args) {
+        
+        // Create an ArrayList of String elements
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("apple");
+        list.add("banana");
+        list.add("cherry");
+        list.add("date");
+        list.add("elderberry");
+        list.add("fig");
+        
+        // Print the original ArrayList
+        System.out.println("Original ArrayList: " + list);
+        
+        // Ask the user for the index of the element to remove
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the index of the element to remove: ");
+        int indexToRemove = scanner.nextInt();
+        
+        // Check if the user-specified index is within the bounds of the ArrayList
+        if (indexToRemove >= 0 && indexToRemove < list.size()) {
+            // Remove the element at the user-specified index
+            list.remove(indexToRemove);
+            // Print the ArrayList after removing the user-specified element
+            System.out.println("ArrayList after removing element at index " + indexToRemove + ": " + list);
+        } else {
+            // If the user-specified index is out of bounds, print an error message
+            System.out.println("Invalid index. Please enter an index between 0 and " + (list.size() - 1));
+        }
+    }
+
+}
