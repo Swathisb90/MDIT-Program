@@ -1,0 +1,64 @@
+package Selenium.Traning;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+
+
+
+public class Checkbox_extend {
+	public static void main(String[] args) throws IOException {
+		  
+		 ChromeOptions options = new ChromeOptions();
+	     options.addArguments("--remote-allow-origins=*");
+	     ChromeDriver driver = new ChromeDriver(options);
+	     
+	     driver.get("https://www.ironspider.ca/forms/checkradio.htm");
+	     driver.manage().window().maximize();
+	     
+	     WebElement checkbox1 = driver.findElement(By.xpath("//div[1]/blockquote[1]/form/input[2]"));
+	     checkbox1.click();
+	  
+	    
+	     WebElement checkbox2 = driver.findElement(By.xpath("//div[1]/blockquote[1]/form/input[3]"));
+	     checkbox2.click();
+	     
+	     
+	     WebElement checkbox3 =  driver.findElement(By.xpath("//input[@value='purple']"));
+	     checkbox3.click();
+	     
+	     JavascriptExecutor js = (JavascriptExecutor)driver;  
+	     js.executeScript("window.scrollBy(0, 300)"); 
+	     
+	     TakeScreenshot(driver, "/Users/moolya/Desktop/test.png");
+	 
+	     driver.close();
+	}
+	public static void TakeScreenshot(WebDriver webdriver,String fileWithPath)
+	        throws IOException
+	    {
+	       
+			TakesScreenshot driver = (TakesScreenshot) webdriver;
+			
+			// Creating instance of File
+	        File File = ((TakesScreenshot)driver )
+	                        .getScreenshotAs(OutputType.FILE);
+	        
+	 
+	        File DestFile=new File(fileWithPath);
+
+            //Copy file at destination
+	        java.io.File SrcFile = File;
+          FileUtils.copyFile(SrcFile, DestFile);
+	    }
+}
