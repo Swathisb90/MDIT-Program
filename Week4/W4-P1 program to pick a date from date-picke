@@ -1,0 +1,50 @@
+package Selenium.Traning;
+
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class datedemo {
+	 public static void main(String[] args) throws InterruptedException {
+	       // WebDriver driver = new ChromeDriver();
+	        ChromeOptions options = new ChromeOptions();
+	        options.addArguments("--remote-allow-origins=*");
+	        ChromeDriver driver = new ChromeDriver(options);
+
+	        driver.get("https://jqueryui.com/datepicker/#buttonbar");
+	        
+	        driver.manage().window().maximize();
+	        WebElement iframe = driver.findElement(By.xpath("//iframe[@class='demo-frame']"));
+	        
+	    	driver.switchTo().frame(iframe);
+	    	
+	    	
+	    	driver.findElement(By.id("datepicker")).click();
+	    	Thread.sleep(4000);
+	        //Declaring in the desired date
+	    	
+	    	String desiredDate = "04-15-2023";
+	    	 String month = desiredDate.split("-")[0];
+	         String day = desiredDate.split("-")[1];
+	         String year = desiredDate.split("-")[2];
+	       
+	         List<WebElement> dates=driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//td"));
+	    	 for(WebElement date : dates)
+	         {
+	         	if(date.getText().equals(day))
+	         	{
+	         		date.click();
+	         	}
+	         }
+
+	    	 Thread.sleep(4000);
+	        driver.quit();
+	     
+	 }
+	
+	
+}
