@@ -1,0 +1,11 @@
+
+package JavaLearning;                          
+
+public class FirstProgramAssignment {           
+   
+	public static void main(String[] args) {    
+		
+		System.out.println("Welcome to Core Java!");   
+    System.out.println("=====================");
+}
+}
