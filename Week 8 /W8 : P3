@@ -1,0 +1,77 @@
+package Assesment;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Duration;
+
+import org.openqa.selenium.JavascriptExecutor;
+
+import com.google.common.collect.ImmutableMap;
+
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
+import io.appium.java_client.service.local.flags.GeneralServerFlag;
+
+public class Scroll_assessment {
+static AndroidDriver driver;
+static AppiumDriverLocalService service;	
+	
+	 
+public static void main(String[] args) throws InterruptedException, MalformedURLException {
+		System.out.println("Starting Appium Server Now...");
+
+		// Appium JS File Location
+        File appiumJS = new File ("/Users/moolya/Library/Android/node_modules/main.js");
+		String ipAddress = "127.0.0.1";
+		int port = 4723;
+		service = new AppiumServiceBuilder().usingPort(port).withIPAddress(ipAddress).withAppiumJS(appiumJS)
+					.withArgument(GeneralServerFlag.SESSION_OVERRIDE).withLogFile(new File(System.getProperty("user.dir")
+							+ "/target/resources/appium_server_logs" + Thread.currentThread().getId()))
+					.build();
+		service.start();
+		Thread.sleep(20000);
+		System.out.println("Appium Server Started");
+
+		String urlOfAppiumServer = "http://127.0.0.1:4723";
+		URL appiumServerUrl = new URL(urlOfAppiumServer);
+
+		UiAutomator2Options options = new UiAutomator2Options();
+		options.setDeviceName("Pixel_2");
+		options.setApp("/Users/moolya/Downloads/AppiumTraining/training2023_Ravi/src/test/resources/ApiDemos-debug.apk");
+
+		System.out.println("Starting Aplication");
+		driver = new AndroidDriver(appiumServerUrl, options);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+	
+
+		driver.findElement(AppiumBy.accessibilityId("Views")).click();
+
+	    //SCrolling
+
+		String actionToScroll = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"WebView\"));";
+
+		driver.findElement(AppiumBy.androidUIAutomator(actionToScroll));
+		boolean canScrollMore;
+
+		do {
+
+			canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap
+					.of("direction", "down", "left", 100, "top", 100, "width", 200, "height", 200, "percent", 3.0));
+
+		} while (canScrollMore);
+		
+		System.out.println("Quitting Application");
+		driver.quit();
+		System.out.println("Stopping Appium Server Now...");
+		service.stop();
+
+		System.out.println("Appium Server Stopped");
+
+    }
+}
+
